@@ -409,10 +409,14 @@
     
               const bubble = document.getElementById("bubble");
     
-              // Check if the response contains the 'prediction' key
-              if (data.prediction && Array.isArray(data.prediction)) {
+              // Check if the response contains the 'data.predictions' key
+              if (
+                data.status === "success" &&
+                data.data &&
+                Array.isArray(data.data.predictions)
+              ) {
                 // Extract the churn probability (assuming "1" represents churn)
-                const churnProbability = data.prediction[0]["1"];
+                const churnProbability = data.data.predictions[0]["1"];
                 const churnText =
                   churnProbability === 100
                     ? "100% churn"
