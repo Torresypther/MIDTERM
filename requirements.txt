@@ -73,8 +73,8 @@ unicodedata2 @ file:///C:/b/abs_dfnftvxi4k/croot/unicodedata2_1736543771112/work
 wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1733231326287/work
 Werkzeug @ file:///C:/b/abs_c7bupijx2_/croot/werkzeug_1737448709012/work
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1732827521216/work
-Flask==2.3.3
-pandas==2.0.3
-joblib==1.2.0
-flask-cors==3.0.10
-category_encoders==2.5.0
+Flask
+pandas
+joblib
+flask-cors
+category_encoders
