@@ -88,16 +88,22 @@
         background: radial-gradient(circle at 30% 30%, #007bff33, #007bff10);
         box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
         margin: 0 auto 50px;
-        font-size: 1rem;
-        font-weight: 600;
-        backdrop-filter: blur(10px);
+        font-size: 1.5rem; /* Increased font size */
+        font-weight: 700; /* Bold text */
+        text-align: center; /* Center text horizontally */
         color: #333333;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: center; /* Center text vertically */
         line-height: 1.5;
         animation: bounce 2s infinite;
+        overflow: hidden; /* Prevent overflow */
+      }
+
+      .bubble div {
+        font-size: 2rem; /* Larger text for results */
+        color: #005fc4; /* Highlighted text color */
       }
 
       .form-wrapper {
@@ -202,6 +208,8 @@
         }
       }
     </style>
+
+
   </head>
   <body>
     <div class="background-decor">
@@ -213,16 +221,8 @@
     <div class="title">Customer Churn Prediction</div>
 
     <div class="bubble" id="bubble">
-      <div>
-        <i class="bi bi-graph-up-arrow"></i><br />
-        Check Customer
-      </div>
+      <div>Result</div>
     </div>
-
-    <section id="resultContainer" style="display: none; margin-top: 20px">
-      <h4>Prediction Result:</h4>
-      <p id="thyroidResult" style="font-weight: bold; color: #007bff"></p>
-    </section>
 
     <div class="form-wrapper">
       <form>
@@ -356,7 +356,7 @@
       $(document).ready(function () {
         $("form").on("submit", function (event) {
           event.preventDefault(); // Prevent the form from refreshing the page
-    
+
           // Collect form data
           const requestData = {
             inputs: [
@@ -386,10 +386,10 @@
               },
             ],
           };
-    
+
           // Debugging: Log the request data to ensure it's correct
           console.log("Request Data:", requestData);
-    
+
           // Send the data to the API
           fetch("http://localhost:8000/api/customer_churn_prediction", {
             method: "POST",
@@ -406,9 +406,9 @@
             })
             .then((data) => {
               console.log("API Response:", data); // Debug log
-    
+
               const bubble = document.getElementById("bubble");
-    
+
               // Check if the response contains the 'data.predictions' key
               if (
                 data.status === "success" &&
@@ -419,11 +419,11 @@
                 const churnProbability = data.data.predictions[0]["1"];
                 const churnText =
                   churnProbability === 100
-                    ? "100% churn"
+                    ? "100%"
                     : churnProbability === 0
-                    ? "0% churn"
-                    : `${churnProbability}% churn`;
-    
+                    ? "0%"
+                    : `${churnProbability}% Churn`;
+
                 // Display the churn result inside the bubble
                 bubble.innerHTML = `<div>${churnText}</div>`;
               } else {
@@ -438,6 +438,5 @@
         });
       });
     </script>
-
   </body>
 </html>
